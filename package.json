@@ -1,0 +1,108 @@
+{
+  "name": "vite-project",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "~~ DEV COMMANDS ~~": "",
+    "dev": "vite",
+    "dev:mocks": "VITE_MOCKS=\"true\" vite",
+    "storybook": "storybook dev -p 6006 --config-dir storybook",
+
+    "~~ LINT COMMANDS ~~": "",
+    "lint": "eslint 'src/**/*.{ts,tsx}'",
+    "lint:fix": "eslint --fix 'src/**/*.{ts,tsx}'",
+    "lint:format": "prettier --write 'src/**/*.{ts,tsx}'; eslint --fix 'src/**/*.{ts,tsx}'",
+
+    "~~ GENERATOR COMMANDS ~~": "",
+    "generate": "plop",
+    "generate:feature": "plop feature",
+    "generate:hook": "plop hook",
+    "generate:page": "plop page",
+    "generate:ui": "plop ui",
+    "generate:util": "plop util",
+
+    "~~ BUILD COMMANDS ~~": "",
+    "build": "tsc -b && vite build",
+    "build:mocks": "tsc -b && VITE_MOCKS=\"true\" vite build",
+    "preview": "vite preview",
+    "build-storybook": "storybook build --config-dir storybook",
+
+    "~~ TEST COMMANDS ~~": "",
+    "test": "vitest run",
+    "test:e2e": "wait-for-localhost 8080 && playwright test",
+    "test:e2e:mocks": "npm run build:mocks && run-p -r \"preview\" \"test:e2e\"",
+
+    "~~ POSTSCRIPTS ~~": "",
+    "postgenerate": "npm run lint:format",
+    "postgenerate:feature": "npm run lint:format",
+    "postgenerate:hook": "npm run lint:format",
+    "postgenerate:page": "npm run lint:format",
+    "postgenerate:ui": "npm run lint:format",
+    "postgenerate:util": "npm run lint:format"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.51.23",
+    "@tanstack/react-query-devtools": "^5.51.23",
+    "classnames": "^2.5.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-error-boundary": "^4.0.13",
+    "react-router-dom": "^6.26.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "@playwright/test": "^1.46.1",
+    "@storybook/addon-essentials": "^8.2.9",
+    "@storybook/addon-interactions": "^8.2.9",
+    "@storybook/addon-links": "^8.2.9",
+    "@storybook/blocks": "^8.2.9",
+    "@storybook/react": "^8.2.9",
+    "@storybook/react-vite": "^8.2.9",
+    "@storybook/test": "^8.2.9",
+    "@tanstack/eslint-plugin-query": "^5.51.15",
+    "@testing-library/jest-dom": "^6.4.8",
+    "@testing-library/react": "^16.0.0",
+    "@types/node": "^22.4.1",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.5",
+    "eslint": "^9.9.0",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+    "eslint-plugin-react-refresh": "^0.4.9",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-plugin-storybook": "^0.8.0",
+    "globals": "^15.9.0",
+    "happy-dom": "^14.12.3",
+    "msw": "^2.3.5",
+    "npm-run-all": "^4.1.5",
+    "plop": "^4.0.1",
+    "postcss": "^8.4.41",
+    "prettier": "^3.3.3",
+    "storybook": "^8.2.9",
+    "tailwindcss": "^3.4.10",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^8.0.1",
+    "vite": "^5.4.1",
+    "vite-plugin-cdn2": "^1.1.0",
+    "vite-plugin-checker": "^0.7.2",
+    "vite-tsconfig-paths": "^5.0.1",
+    "vitest": "^2.0.5",
+    "wait-for-localhost-cli": "^3.2.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
+  },
+  "msw": {
+    "workerDirectory": [
+      "dist"
+    ]
+  }
+}
